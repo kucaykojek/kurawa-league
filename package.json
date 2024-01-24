@@ -12,7 +12,9 @@
     "prettier": "prettier \"**/*.{ts,tsx,js,jsx}\" --ignore-path .gitignore --check",
     "prettier:fix": "npm run prettier -- --write",
     "format": "npm run prettier:fix && npm run lint:fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build",
+    "prisma:generate": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.8.1",
