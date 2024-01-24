@@ -1,3 +1,49 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": ["prettier", "unused-imports"],
+  "env": { "es2023": true, "browser": true },
+  "rules": {
+    // React Hooks
+    "react-hooks/rules-of-hooks": "off",
+    "react-hooks/exhaustive-deps": "off",
+
+    // NO's
+    "no-cond-assign": "error",
+    "no-trailing-spaces": "error",
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
+    "no-plusplus": [1, { "allowForLoopAfterthoughts": true }],
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+
+    // Others
+    "brace-style": "error",
+    "comma-dangle": ["error", "never"],
+    "curly": "error",
+    "comma-spacing": "error",
+    "indent": 0,
+    "linebreak-style": "error",
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "import/no-cycle": "off",
+    "import/prefer-default-export": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
+  }
 }

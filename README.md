@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Kurawa League
 
-## Getting Started
+Application to record "Remi" games.
 
-First, run the development server:
+## Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js >= 18.17.0
+- PostgreSQL >= 15 or Docker
+
+## Development
+
+#### 1. Set env
+
+```
+cp env.sample .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### 2. Install depedencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+yarn
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### 3. Setup database
 
-## Learn More
+> [!NOTE] if you have PostgreSQL on your local machine, you can **skip** this
+> step.
 
-To learn more about Next.js, take a look at the following resources:
+```
+docker-compose -f docker-compose.yaml up -d
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+create database from your docker.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+$ docker ps
+$ docker exec -it <container_id> bash
+# createdb -U postgres pipeline
+```
 
-## Deploy on Vercel
+Also make sure `/var/lib/postgresql/data/pg_hba.conf` allowing network
+connection. Add host to your file:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+...
+host all all all scram-sha-256
+...
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### 4. Migrate database
+
+```
+npx prisma migrate dev
+```
+
+#### 5. Run development
+
+```
+yarn dev
+```
+
+## Links
+
+- [Next.js](https://nextjs.org/)
+- [Prisma](https://www.prisma.io/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+## Attributions
+
+- [Playing cards icon created by bearicons - Flaticon](https://www.flaticon.com/free-icons/playing-cards)
+- [Playing cards photo created by Anna Shvets - Pexels](https://www.pexels.com/id-id/foto/bertaruh-kasino-keberuntungan-permainan-6664193)

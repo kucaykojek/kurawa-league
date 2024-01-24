@@ -1,0 +1,20 @@
+.summaryWrapper,
+.playerWrapper {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+}
+
+.summaryWrapper {
+  @apply lg:grid-cols-4;
+}
+
+.item {
+  @apply bg-background rounded-lg px-4 py-2 border;
+}
+
+.item label {
+  @apply block mb-2 text-branding text-sm font-medium;
+}
+
+.item h3 {
+  @apply text-xl font-semibold;
+}
