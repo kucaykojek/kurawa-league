@@ -1,0 +1,13 @@
+.card {
+  @apply relative bg-background overflow-hidden rounded-lg;
+}
+.card .card-header {
+  @apply relative flex flex-wrap items-center p-4 border-b;
+}
+.card .card-header .card-title {
+  @apply relative font-medium text-lg pl-4;
+}
+.card .card-header .card-title::before {
+  @apply absolute top-0 left-0 w-1 h-full bg-gradient-to-t from-branding/50 to-branding rounded-full;
+  content: '';
+}

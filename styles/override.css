@@ -1,0 +1,33 @@
+button {
+  @apply outline-none;
+}
+
+/* BEGIN: highcharts */
+.highcharts-root {
+  @apply !font-sans;
+}
+.highcharts-title {
+  @apply !font-semibold;
+}
+/* END: highcharts */
+
+/* BEGIN: toastify */
+.Toastify__toast-container {
+  @apply text-sm;
+}
+/* END: toastify */
+
+/* BEGIN: scrollbar */
+::-webkit-scrollbar {
+  @apply w-1.5 h-1.5;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-black bg-opacity-20 cursor-pointer rounded-full transition-all ease-in-out;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-opacity-40;
+}
+/* END: scrollbar */

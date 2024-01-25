@@ -1,0 +1,10 @@
+.btn {
+  @apply flex items-center justify-center truncate outline-none p-2 px-5 !bg-neutral-200 w-full rounded-full text-sm font-medium transition-all ease-in-out
+  hover:!bg-neutral-300 focus:!bg-neutral-200 focus:ring-4 focus:ring-neutral-200/50;
+}
+.btn:disabled {
+  @apply cursor-not-allowed opacity-80 pointer-events-none;
+}
+.btn.btn-branding {
+  @apply !bg-branding text-white hover:!bg-branding/90 focus:!bg-branding;
+}

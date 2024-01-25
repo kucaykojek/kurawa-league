@@ -1,0 +1,33 @@
+.formWrapper {
+  @apply flex-shrink-0 p-4 sm:p-12 md:p-6 w-full md:w-1/2 lg:max-w-[32rem];
+}
+
+.formWrapper > div {
+  @apply relative flex items-center h-full p-6 xl:p-12 bg-white rounded-2xl shadow-lg overflow-hidden;
+}
+
+.formContentWrapper {
+  @apply flex flex-col justify-evenly z-10 py-6 space-y-12;
+}
+
+.inputWrapper {
+  @apply relative;
+}
+
+.inputWrapper input {
+  @apply block px-3 pb-3 pt-4 w-full text-neutral-800 bg-transparent rounded-xl border-2 border-neutral-300 appearance-none focus:outline-none focus:ring-0 focus:border-secondary;
+}
+
+.inputWrapper label {
+  @apply absolute text-neutral-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 start-1;
+}
+.inputToggle {
+  @apply absolute top-4 right-3;
+}
+.inputToggle svg {
+  @apply w-6 h-6 text-neutral-600;
+}
+
+.actionButton {
+  @apply outline-none border-none w-full rounded-full !bg-branding text-white uppercase font-medium transition-all ease-in hover:shadow-inner text-lg p-3 tracking-wider hover:tracking-widest;
+}

@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 
-import Header from '@/components/common/header';
+import Auth from '@/components/auth';
 import { Toaster } from '@/components/ui/toaster';
 import { fontSans } from '@/libs/fonts';
 import { cn } from '@/libs/utils';
-
-import './globals.css';
+import '@/styles/components.css';
+import '@/styles/globals.css';
+import '@/styles/override.css';
 
 export const metadata: Metadata = {
   title: 'Kurawa League',
@@ -26,11 +27,9 @@ export default function RootLayout({
         )}
         suppressHydrationWarning
       >
-        <div className="container">
-          <Header />
-          <main>{children}</main>
-        </div>
+        {children}
         <Toaster />
+        <Auth />
       </body>
     </html>
   );
