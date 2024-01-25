@@ -1,17 +1,15 @@
 'use client';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import { signIn } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
 
 import { useToast } from '@/components/ui/use-toast';
+import { register } from '@/services/auth';
 import useAuthStore from '@/stores/auth.store';
 
 import style from './auth.module.css';
 
 const RegisterForm = () => {
-  const router = useRouter();
   const { toast } = useToast();
   const { setMode } = useAuthStore();
 
@@ -23,32 +21,18 @@ const RegisterForm = () => {
     password: ''
   });
 
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
-
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       setLoading(true);
       setFormValues({ name: '', username: '', password: '' });
 
-      const res = await signIn('credentials', {
-        redirect: false,
-        username: formValues.username,
-        password: formValues.password,
-        callbackUrl
+      await register(formValues);
+
+      setMode('login');
+      toast({
+        description: 'Berhasil mendaftar. Silakan isi form untuk masuk.'
       });
-
-      setLoading(false);
-
-      if (!res?.error) {
-        router.push(callbackUrl);
-      } else {
-        toast({
-          variant: 'destructive',
-          description: 'Invalid username or password'
-        });
-      }
     } catch (err: unknown) {
       toast({
         variant: 'destructive',

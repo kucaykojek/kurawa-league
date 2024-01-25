@@ -1,6 +1,7 @@
 'use client';
 
-import { LogIn } from 'lucide-react';
+import { LogIn, LogOutIcon } from 'lucide-react';
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 
 import { fontQuando } from '@/libs/fonts';
@@ -11,6 +12,7 @@ import style from './header.module.css';
 
 const Header = () => {
   const { setOpen } = useAuthStore();
+  const { data: session } = useSession();
 
   return (
     <header className={style.header}>
@@ -20,14 +22,32 @@ const Header = () => {
       </h1>
 
       <div className={style.actionWrapper}>
-        <button
-          type="button"
-          className="btn btn-branding"
-          onClick={() => setOpen(true)}
-        >
-          <LogIn className="w-4 h-4 mr-2" />
-          Masuk/Daftar
-        </button>
+        {session?.user ? (
+          <>
+            <div className="text-sm font-semibold truncate">
+              {session?.user?.name}
+            </div>
+            <div>
+              <button
+                type="button"
+                className="btn btn-branding"
+                onClick={() => signOut()}
+              >
+                <LogOutIcon className="w-4 h-4 mr-2" />
+                Keluar
+              </button>
+            </div>
+          </>
+        ) : (
+          <button
+            type="button"
+            className="btn btn-branding"
+            onClick={() => setOpen(true)}
+          >
+            <LogIn className="w-4 h-4 mr-2" />
+            Masuk/Daftar
+          </button>
+        )}
       </div>
     </header>
   );

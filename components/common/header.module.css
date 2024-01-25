@@ -2,8 +2,8 @@
   @apply flex items-center rounded-xl bg-background p-4 mt-4 gap-2;
 }
 .header h1 {
-  @apply text-xl;
+  @apply text-xl grow shrink-0;
 }
 .actionWrapper {
-  @apply ml-auto flex items-center gap-4;
+  @apply ml-auto flex items-center gap-4 shrink-0;
 }

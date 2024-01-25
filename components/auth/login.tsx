@@ -2,7 +2,6 @@
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { signIn } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
 
 import { useToast } from '@/components/ui/use-toast';
@@ -11,9 +10,8 @@ import useAuthStore from '@/stores/auth.store';
 import style from './auth.module.css';
 
 const LoginForm = () => {
-  const router = useRouter();
   const { toast } = useToast();
-  const { setMode } = useAuthStore();
+  const { setMode, setOpen } = useAuthStore();
 
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -21,9 +19,6 @@ const LoginForm = () => {
     username: '',
     password: ''
   });
-
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,14 +29,14 @@ const LoginForm = () => {
       const res = await signIn('credentials', {
         redirect: false,
         username: formValues.username,
-        password: formValues.password,
-        callbackUrl
+        password: formValues.password
       });
 
-      setLoading(false);
-
       if (!res?.error) {
-        router.push(callbackUrl);
+        setOpen(false);
+        toast({
+          description: 'Berhasil masuk'
+        });
       } else {
         toast({
           variant: 'destructive',
